@@ -6,12 +6,9 @@
 
 ```mermaid
 flowchart LR
-  A[User] --> CF[CloudFront (OAC)]
-  CF -->|OAC origin| S3[(S3 bucket - private, versioning)]
-  CF -.logs.-> L[(S3 logs bucket)]
-  L --> ATH[Athena - queries]
-  CF --> ACM[(ACM certificate)]
-```
+  A[User]; CF[CloudFront OAC]; S3[S3 bucket private]; L[S3 logs bucket]; ACM[ACM cert]; ATH[Athena]
+  A --> CF; CF --> S3; CF -.-> L; L --> ATH; CF --> ACM;
+```    
   
 ## Steps (how to run)
 
