@@ -10,17 +10,6 @@ flowchart LR
   A --> CF; CF --> S3; CF -.-> L; L --> ATH; CF --> ACM;
 ```
 
-```mermaid
-flowchart LR
-  A[CloudFront Access Logs] -->|AWSLogs/...| B[S3 (bucket privado)]
-  B --> C[Athena: Tabela cf_logs_raw]
-  C --> D[View cf_logs_view]
-  D --> E[View cf_logs_view_friendly]
-  E --> F[CTAS: Tabela cf_logs_curated (Parquet + partitions)]
-  B -. Lifecycle 90d -> Glacier IR / 365d Expire .-> B
-  G[athena-results/] -. Expire 14d .-> G
-```
-  
 ## Steps (how to run)
 
 1. S3 (private): create bucket, enable **Block Public Access** and **Versioning**.  
